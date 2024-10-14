@@ -1,7 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://en46n6wvyuhd"]
+[gd_scene load_steps=26 format=3 uid="uid://en46n6wvyuhd"]
 
 [ext_resource type="Script" path="res://scripts/2DCHAR.gd" id="1_1swnx"]
 [ext_resource type="Texture2D" uid="uid://bcsitr4kkg074" path="res://textures/actors/!$sAR1.png" id="2_qeh4a"]
+[ext_resource type="Texture2D" uid="uid://c875dbnir8er2" path="res://textures/untitled.png" id="3_cthvq"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="4_qjrmp"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="5_5c56q"]
+[ext_resource type="Resource" uid="uid://vcw54e3t6bg1" path="res://dialog/dialtest.tres" id="5_njrsn"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="6_urnt5"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="7_2cso0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqa6n"]
 radius = 7.0
@@ -125,6 +131,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_laqpl"]
+script = ExtResource("5_5c56q")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_m5mbn"]
+script = ExtResource("6_urnt5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_sd33a"]
+script = ExtResource("7_2cso0")
+
 [node name="SanSara" type="CharacterBody2D"]
 script = ExtResource("1_1swnx")
 
@@ -144,3 +159,26 @@ animation = &"walk3"
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 30)
 collision_mask = 2
+
+[node name="Untitled" type="Sprite2D" parent="."]
+position = Vector2(13, -13)
+scale = Vector2(0.242593, 0.242593)
+texture = ExtResource("3_cthvq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueBox" type="Panel" parent="Control"]
+visible = false
+z_index = 3
+layout_mode = 1
+offset_left = -287.0
+offset_top = 33.0
+offset_right = 179.0
+offset_bottom = 162.0
+script = ExtResource("4_qjrmp")
+data = ExtResource("5_njrsn")
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_laqpl"), SubResource("RichTextEffect_m5mbn"), SubResource("RichTextEffect_sd33a")])

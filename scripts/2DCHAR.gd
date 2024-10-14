@@ -4,7 +4,7 @@ extends CharacterBody2D
 var SPEED : int
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 5
 var intangles = [-90,0,90,180]
 @onready var inter = $"RayCast2D"
 @onready var animat = $AnimatedSprite2D
@@ -15,7 +15,6 @@ func _ready():
 func interact():
 	var detectedint = inter.get_collider()
 	if detectedint != null:
-		#var scre = detectedint.get_parent()
 		if detectedint.collision_layer == 2 or 4 and detectedint.script != null:
 			detectedint.inter()
 
